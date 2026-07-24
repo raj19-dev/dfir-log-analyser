@@ -1,6 +1,5 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0B1220,50:101A2D,100:14233B&height=180&section=header&text=DFIR%20Log%20Analyser&fontSize=48&fontColor=ffffff&fontAlignY=40&desc=Digital%20Forensics%20%26%20Incident%20Response%20Tool&descAlignY=62&descSize=16&descColor=4F8CFF&animation=fadeIn" />
 
 <br/>
 
@@ -179,6 +178,5 @@ B.Tech Cybersecurity Student
 
 ⭐ **If you found this useful, consider starring the repo!**
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:14233B,50:101A2D,100:0B1220&height=100&section=footer" />
 
 </div>
