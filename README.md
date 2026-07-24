@@ -11,7 +11,7 @@
 
 <br/>
 
-> **A Python-based DFIR tool that ingests raw tcpdump log files, automatically correlates network events into connections, classifies them as Normal / Suspicious / Malicious, and surfaces attack patterns — available as both a CLI tool and a desktop GUI dashboard.**
+> **A Python-based DFIR tool that ingests raw tcpdump log files, automatically correlates network events into connections, classifies them as Normal / Suspicious / Malicious, and surfaces attack patterns: available as both a CLI tool and a desktop GUI dashboard.**
 
 </div>
 
