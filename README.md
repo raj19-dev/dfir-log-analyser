@@ -25,7 +25,7 @@
 
 | Feature | Description |
 |---------|-------------|
-| 🔗 **Event Correlation Engine** | Groups raw log entries into bidirectional connections by IP pair and port — the core technical innovation |
+| 🔗 **Event Correlation Engine** | Groups raw log entries into bidirectional connections by IP pair and port |
 | 🔴 **SYN Flood Detection** | Identifies high-volume SYN packet floods with no completed TCP handshake |
 | 🟡 **ICMP Flood Detection** | Flags abnormal volumes of ICMP packets from a single source |
 | 🔀 **Traffic Redirect Detection** | Correlates DNS resolutions against actual connections to detect suspicious redirects |
@@ -46,7 +46,7 @@ Triggered when a single source sends **10+ SYN packets** to the same destination
 Triggered when **10+ ICMP packets** are detected from a single source. Consistent with ping flood / DDoS amplification attacks.
 
 ### Traffic Redirect
-Uses **DNS correlation** — the tool tracks DNS query/response pairs using query IDs, builds a domain→IP map, then checks whether subsequent TCP connections go to the expected resolved IP. A mismatch indicates a possible redirect, spoofing, or malware-induced domain hijack.
+Uses **DNS correlation** which is the tool that tracks DNS query/response pairs using query IDs, builds a domain→IP map, then checks whether subsequent TCP connections go to the expected resolved IP. A mismatch indicates a possible redirect, spoofing, or malware-induced domain hijack.
 
 ---
 
@@ -61,7 +61,7 @@ dfir-log-analyser/
 ├── correlator.py       # Event grouping engine — bidirectional connection keys
 ├── classifier.py       # Attack detection — SYN flood, ICMP flood, redirect
 ├── reporter.py         # CLI output (Rich) + JSON export
-├── models.py           # Data structures — Event and Connection dataclasses
+├── models.py           # Data structures; Event and Connection dataclasses
 │
 ├── sample_logs/        # Sample tcpdump logs for testing
 │   ├── syn_flood.txt
@@ -101,7 +101,7 @@ python gui.py
 
 1. Click **Browse log** to select a tcpdump `.txt` or `.log` file
 2. Click **Analyse**
-3. Results appear in the dashboard — click any row to inspect packet-level evidence
+3. Results appear in the dashboard...click any row to inspect packet-level evidence
 4. Click **Export JSON** to save the report
 
 ### Run the CLI
@@ -123,7 +123,7 @@ python analyser.py sample_logs/syn_flood_attack.txt --export
 | Library | Purpose |
 |---------|---------|
 | `customtkinter` | Modern desktop GUI framework |
-| `rich` | Beautiful CLI output — tables, panels, colour coding |
+| `rich` | Beautiful CLI output with tables, panels, colour coding |
 
 Install all:
 ```bash
@@ -138,7 +138,7 @@ Three sample logs are included for testing:
 
 | File | Contains |
 |------|---------|
-| `syn_flood.txt` | DNS redirect scenario — yummyrecipesforme.com brute force case |
+| `syn_flood.txt` | DNS redirect scenario dummy yummyrecipesforme.com brute force case |
 | `syn_flood_attack.txt` | SYN flood from single attacker IP |
 | `icmp_flood.txt` | ICMP flood from single attacker IP |
 
