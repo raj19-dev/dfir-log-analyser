@@ -17,9 +17,7 @@
 
 ---
 
-## 📸 Dashboard
 
-![DFIR Log Analyser Dashboard](assets/screenshot.png)
 
 ---
 
