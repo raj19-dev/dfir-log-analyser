@@ -20,7 +20,7 @@
 
 ## Dashboard
 
-![DFIR Log Analyser Dashboard](assets/screenshot.png)
+![DFIR Log Analyser Dashboard](assets/screenshots.png)
 
 ---
 
