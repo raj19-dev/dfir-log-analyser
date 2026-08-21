@@ -1,17 +1,10 @@
 from models import Event, Connection
 
+
 def correlate_events(events: list[Event], dns_map: dict) -> list[Connection]:
-    """
-    Groups events into connections.
-
-    A connection is identified by the two endpoints and ports, regardless of
-    packet direction.  This keeps TCP request and response packets together.
-    """
-
     connections = {}
 
     for event in events:
-
         endpoint_a = (event.src_ip, event.src_port)
         endpoint_b = (event.dst_ip, event.dst_port)
         key = tuple(sorted((endpoint_a, endpoint_b), key=lambda endpoint: (endpoint[0], endpoint[1] or -1)))

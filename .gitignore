@@ -1,5 +1,23 @@
-output/
+# Python bytecode & caches
 __pycache__/
-*.pyc
-.env
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Output directories & artifacts
+output/
+reports/
+*.log
 results.txt
+.env
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini

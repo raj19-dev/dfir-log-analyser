@@ -1,0 +1,6 @@
+"No.","Time","Source","Destination","Protocol","Length","Info"
+"1","0.000000","192.168.1.10","192.168.1.1","DNS","78","Standard query 0x1234 A yummyrecipesforme.com"
+"2","0.005000","192.168.1.1","192.168.1.10","DNS","94","Standard query response 0x1234 A yummyrecipesforme.com A 192.168.1.50"
+"3","0.010000","192.168.1.10","192.168.1.99","TCP","66","54321 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460"
+"4","0.012000","192.168.1.99","192.168.1.10","TCP","66","80 → 54321 [SYN, ACK] Seq=0 Ack=1 Win=65535 Len=0"
+"5","0.013000","192.168.1.10","192.168.1.99","TCP","54","54321 → 80 [ACK] Seq=1 Ack=1 Win=64240 Len=0"

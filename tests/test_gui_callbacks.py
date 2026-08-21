@@ -1,9 +1,3 @@
-"""Headless checks for every GUI callback.
-
-These tests exercise button callbacks without creating a Tk window, so they
-can run in CI or on systems without a graphical desktop.
-"""
-
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
@@ -11,7 +5,6 @@ from unittest.mock import patch
 
 import gui
 from models import Connection, Event
-
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SAMPLE_LOG = PROJECT_ROOT / "sample_logs" / "syn_flood_attack.txt"
@@ -73,6 +66,9 @@ class CallbackHarness:
     def _browse_file(self):
         return gui.DFIRApp._browse_file(self)
 
+    def _refresh_workspace(self):
+        return gui.DFIRApp._refresh_workspace(self)
+
     def _export_results(self):
         return gui.DFIRApp._export_results(self)
 
@@ -102,11 +98,13 @@ class GuiCallbackTests(unittest.TestCase):
         export.assert_called_once_with(harness.connections, str(SAMPLE_LOG), target)
         self.assertEqual(harness.statuses[-1][0], "EXPORTED")
 
-    def test_navigation_buttons_have_actions(self):
-        harness = CallbackHarness()
-        with patch.object(gui.filedialog, "askopenfilename", return_value="C:/logs/navigation.txt"):
-            gui.DFIRApp._focus_analysis(harness)
-        self.assertEqual(harness.selected_file.get(), "C:/logs/navigation.txt")
+    def test_navigation_resets_filters(self):
+        harness = CallbackHarness(filepath="C:/logs/example.txt")
+        harness.search_var.set("malicious_ip")
+        harness.severity_filter.set("Malicious")
+        gui.DFIRApp._focus_analysis(harness)
+        self.assertEqual(harness.search_var.get(), "")
+        self.assertEqual(harness.severity_filter.get(), "All")
 
     def test_row_selection_shows_connection_evidence(self):
         harness = CallbackHarness()

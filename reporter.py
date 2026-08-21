@@ -4,19 +4,16 @@ from rich.panel import Panel
 from rich import box
 from models import Connection
 import json
-import os
 from pathlib import Path
 
 console = Console()
 
 
 def default_report_directory() -> Path:
-    """Return the per-user location used for exported reports."""
     return Path.home() / "Documents" / "DFIR Log Analyser" / "reports"
 
+
 def display_report(connections: list[Connection], filepath: str):
-    """Displays the full analysis report in the terminal"""
-    
     console.print(Panel.fit(
         "[bold cyan]DFIR Log Analyser[/bold cyan]\n[dim]Digital Forensics & Incident Response Tool[/dim]",
         border_style="cyan"
@@ -25,12 +22,10 @@ def display_report(connections: list[Connection], filepath: str):
     console.print(f"\n[dim]Analysing:[/dim] [bold]{filepath}[/bold]")
     console.print(f"[dim]Total connections found:[/dim] [bold]{len(connections)}[/bold]\n")
     
-    # Summary counts
     malicious = sum(1 for c in connections if c.classification == "Malicious")
     suspicious = sum(1 for c in connections if c.classification == "Suspicious")
     normal = sum(1 for c in connections if c.classification == "Normal")
     
-    # Summary panel
     console.print(Panel(
         f"[red]Malicious: {malicious}[/red]   [yellow]Suspicious: {suspicious}[/yellow]   [green]Normal: {normal}[/green]",
         title="Summary",
@@ -39,8 +34,7 @@ def display_report(connections: list[Connection], filepath: str):
     
     console.print()
     
-    # Connection table
-    table = Table(box=box.ROUNDED, border_style="dim", show_lines=True, expand = True)
+    table = Table(box=box.ROUNDED, border_style="dim", show_lines=True, expand=True)
     table.add_column("Source IP", style="cyan", no_wrap=True)
     table.add_column("Destination IP", style="cyan", no_wrap=True)
     table.add_column("Port", justify="center")
@@ -50,7 +44,6 @@ def display_report(connections: list[Connection], filepath: str):
     table.add_column("Reason", style="dim")
     
     for conn in connections:
-        # Keep output compatible with Windows consoles that use legacy code pages.
         status = {
             "Malicious": "[red]Malicious[/red]",
             "Suspicious": "[yellow]Suspicious[/yellow]",
@@ -69,13 +62,12 @@ def display_report(connections: list[Connection], filepath: str):
     
     console.print(table)
 
+
 def export_json(
     connections: list[Connection],
     filepath: str,
     output_path: str | Path | None = None,
 ) -> Path:
-    """Exports analysis results to a JSON file"""
-
     if output_path is None:
         output_dir = default_report_directory()
         output_path = output_dir / f"{Path(filepath).stem}_report.json"
